@@ -1,3 +1,4 @@
 **/step_definitions/**
 **/config.xml
 *.lnk
+!template/**
