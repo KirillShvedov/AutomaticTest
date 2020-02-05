@@ -1,6 +1,10 @@
-$appName = 'C:\Program Files\1cv8\8.3.15.1700\bin\1cv8.exe'
-$template = "D:\simanov\project1c\billing_TDD\template\step_definitions.xml"
-Get-ChildItem -Path D:\simanov\project1c\billing_TDD -Include *.feature -Exclude example.feature -Recurse | foreach { 
+$curentPath = (Split-Path $MyInvocation.MyCommand.Path -Parent)
+[xml]$configFile= get-content $curentPath\Config.xml
+$PlatformPath = $configFile.configuration.Platform1c.add | Where { $_.Key -eq 'path' } | % { $_.value }
+$appName =  "$PlatformPath\bin\1cv8.exe"
+$parentPath = (Split-Path $curentPath -Parent)
+$template = "$parentPath\template\step_definitions.xml"
+Get-ChildItem -Path $parentPath -Include *.feature -Exclude example.feature -Recurse | foreach { 
     $featurePath = $_.Name -replace ".feature",".epf"
     $directory = $_.Directory.FullName 
     $epfPath  = ("$directory\step_definitions\$featurePath")
