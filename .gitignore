@@ -1,4 +1,5 @@
 **/step_definitions/**
 **/config.xml
 *.lnk
+tmp_template/**
 !template/**
