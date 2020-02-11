@@ -1,4 +1,5 @@
     #language: ru
+    @card "https://trello.com/c/eutvD9Di"
     @tree
     Функционал: <описание фичи>
 
