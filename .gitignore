@@ -3,4 +3,4 @@
 *.lnk
 tmp_template/**
 !template/**
-script/settings.json
+**/settings.json
