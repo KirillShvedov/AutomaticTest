@@ -4,3 +4,5 @@
 tmp_template/**
 !template/**
 **/settings.json
+allure-results/**
+*.txt
