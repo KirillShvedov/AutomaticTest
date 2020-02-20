@@ -18,5 +18,6 @@ Get-ChildItem -Path $parentPath -Include *.feature -Recurse | Where-Object { $_.
     }    
     [string[]]$argList = "DESIGNER", "/LoadExternalDataProcessorOrReportFromFiles", """$template""", """$epfPath"""
     Start-Process -FilePath $appName -ArgumentList $argList -Wait
+    start-sleep -s 5
     write-host  $epfPath
     Remove-Item -Path ("$parentPath\tmp_template\*") -Recurse | write-host -NoNewline }
