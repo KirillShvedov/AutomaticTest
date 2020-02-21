@@ -5,7 +5,8 @@ $appName = "$PlatformPath\bin\1cv8.exe"
 $parentPath = (Split-Path $curentPath -Parent)
 $template = "$parentPath\tmp_template\step_definitions.xml"
 $Excludes = '\\export\\|\\template\\'
-Get-ChildItem -Path $parentPath -Include *.feature -Recurse | Where-Object { $_.FullName -notmatch $Excludes } | ForEach-Object {
+$ObjectNames = Get-ChildItem -Path $parentPath -Include *.feature -Recurse | Where-Object { $_.FullName -notmatch $Excludes } 
+$ObjectNames | ForEach-Object {
     Copy-Item -Path ("$parentPath\template\*") -Destination ("$parentPath\tmp_template\") -Recurse -Force
     $relativePath = (Split-Path (Resolve-Path $_.FullName -Relative) -Parent)
     $featureName = $_.Name -replace ".feature", ""
@@ -18,6 +19,5 @@ Get-ChildItem -Path $parentPath -Include *.feature -Recurse | Where-Object { $_.
     }    
     [string[]]$argList = "DESIGNER", "/LoadExternalDataProcessorOrReportFromFiles", """$template""", """$epfPath"""
     Start-Process -FilePath $appName -ArgumentList $argList -Wait
-    start-sleep -s 5
     write-host  $epfPath
     Remove-Item -Path ("$parentPath\tmp_template\*") -Recurse | write-host -NoNewline }
