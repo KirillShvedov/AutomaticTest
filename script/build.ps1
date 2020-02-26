@@ -18,6 +18,12 @@ $ObjectNames | ForEach-Object {
         Remove-Item -Path $epfPath | write-host -NoNewline 
     }    
     [string[]]$argList = "DESIGNER", "/LoadExternalDataProcessorOrReportFromFiles", """$template""", """$epfPath"""
-    Start-Process -FilePath $appName -ArgumentList $argList -Wait
+    Start-Process -FilePath $appName -ArgumentList $argList -NoNewWindow -Wait
+    while ($true) {
+        if ((Test-Path  $epfPath  ) -eq "True") {
+            break;
+        }
+        Start-Process -FilePath $appName -ArgumentList $argList -NoNewWindow -Wait
+    }
     write-host  $epfPath
     Remove-Item -Path ("$parentPath\tmp_template\*") -Recurse | write-host -NoNewline }
