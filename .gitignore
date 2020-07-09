@@ -3,6 +3,6 @@
 *.lnk
 tmp_template/**
 !template/**
-**/settings.json
+**/settings*.json
 allure-results/**
 *.txt
