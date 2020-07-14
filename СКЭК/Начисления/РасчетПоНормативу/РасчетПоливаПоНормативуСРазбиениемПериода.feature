@@ -1,6 +1,6 @@
     #language: ru
     @tree
-    @card 'https://trello.com/c/dOzLYflv'
+    @card 'https://trello.com/c/UREyWhr6'
     Функционал: <описание фичи>
     Как <Роль>
     Я хочу <описание функционала>
